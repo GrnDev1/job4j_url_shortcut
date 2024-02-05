@@ -4,7 +4,8 @@
 
 To ensure the safety of users, all links on the site are replaced with links to our service.
 The service works on REST API.
-Required functionality.
+
+Required functionality:
 
 ### 1. Site registration.
 
@@ -46,8 +47,8 @@ Once the user has registered his site he can send links to the site and receive 
 Sending URL
 
 ```
-   https://job4j.ru/profile/exercise/106/task-view/532
-   ```
+https://job4j.ru/profile/exercise/106/task-view/532
+```
 
 Receiving
 
@@ -112,3 +113,36 @@ Response from the JSON server.
 {url : "https://job4j.ru/profile/exercise/106/task-view/532", total : 103}
 }
 ```
+
+### Used technologies:
+
+* Java 17
+* Spring Boot 2.7.0
+* Spring Data Jpa 2.7.0
+* Spring Security 2.7.0
+* Java-JWT 3.4.0
+* Maven 3.9.5
+* PostgreSQL 16
+* Mapstruct 1.5.5
+* Lombok 1.18.24
+* Junit 5.8.2
+* AssertJ 3.22.0
+* Mockito 4.5.1
+* Liquibase 4.9.1
+* H2database 2.1.220
+* Checkstyle 10.12.5
+
+### Environment Requirements:
+
+* JDK 17
+* Maven 3.9.5
+* PostgreSQL 16
+
+### How to run the project:
+
+- To run the project, you need to clone the project from this repository;
+- Then you need to create a local database "url_shortcut";
+- Specify the login and password for the database you created in the db/liquibase.properties file;
+- Launch the application through the Main class, located in the folder
+  src\main\java\ru\job4jJob4jUrlShortcutApplication;
+- Write API test scripts in client (Postman);
