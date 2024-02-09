@@ -1,4 +1,4 @@
-package ru.job4j.services;
+package ru.job4j.services.url;
 
 import ru.job4j.dtos.FullUrlDto;
 import ru.job4j.dtos.ShortUrlDto;

@@ -12,8 +12,8 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.job4j.Job4jUrlShortcutApplication;
 import ru.job4j.dtos.*;
-import ru.job4j.services.SiteService;
-import ru.job4j.services.UrlService;
+import ru.job4j.services.site.SiteService;
+import ru.job4j.services.url.UrlService;
 
 import java.util.List;
 import java.util.Optional;

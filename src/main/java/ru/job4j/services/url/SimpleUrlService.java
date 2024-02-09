@@ -1,4 +1,4 @@
-package ru.job4j.services;
+package ru.job4j.services.url;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -37,27 +37,24 @@ public class SimpleUrlService implements UrlService {
         }
 
         String shortUrl = sequenceGenerator.generateSequence();
-        while (shortUrlExist(shortUrl)) {
-            shortUrl = sequenceGenerator.generateSequence();
+        while (true) {
+            try {
+                urlRepository.save(new Url(urlDto.getUrl(), shortUrl, getSite(login)));
+                return new ShortUrlDto(shortUrl);
+            } catch (Exception e) {
+                shortUrl = sequenceGenerator.generateSequence();
+            }
         }
-
-        urlRepository.save(new Url(urlDto.getUrl(), shortUrl, getSite(login)));
-        return new ShortUrlDto(shortUrl);
     }
 
     @Override
     public Optional<FullUrlDto> getFullUrl(String shortUrl) {
         Optional<Url> urlOptional = urlRepository.findByShortUrl(shortUrl);
-        if (urlOptional.isPresent()) {
-            urlRepository.incrementTotal(shortUrl);
-            return Optional.of(new FullUrlDto(urlOptional.get().getFullUrl()));
+        if (urlOptional.isEmpty()) {
+            return Optional.empty();
         }
-        return Optional.empty();
-    }
-
-    private boolean shortUrlExist(String shortUrl) {
-        Optional<Url> urlOptional = urlRepository.findByShortUrl(shortUrl);
-        return urlOptional.isPresent();
+        urlRepository.incrementTotal(shortUrl);
+        return Optional.of(new FullUrlDto(urlOptional.get().getFullUrl()));
     }
 
     private Site getSite(String login) {

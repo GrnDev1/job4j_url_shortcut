@@ -92,7 +92,7 @@
         <profile>
             <id>test</id>
             <properties>
-                <liquibase.config>db/liquibase_test.properties</liquibase.config>
+                <liquibase.config>db/changelog/liquibase_test.properties</liquibase.config>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -101,7 +101,7 @@
         <profile>
             <id>production</id>
             <properties>
-                <liquibase.config>db/liquibase.properties</liquibase.config>
+                <liquibase.config>db/changelog/liquibase.properties</liquibase.config>
             </properties>
         </profile>
     </profiles>

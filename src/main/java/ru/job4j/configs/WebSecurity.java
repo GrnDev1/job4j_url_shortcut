@@ -13,7 +13,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import ru.job4j.filters.JWTAuthenticationFilter;
 import ru.job4j.filters.JWTAuthorizationFilter;
-import ru.job4j.services.SiteDetailsService;
+import ru.job4j.services.sitedetails.SiteDetailsService;
 import ru.job4j.utils.SequenceGenerator;
 
 import static ru.job4j.filters.JWTAuthenticationFilter.SIGN_UP_URL;

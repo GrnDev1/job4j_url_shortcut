@@ -1,4 +1,4 @@
-package ru.job4j.services;
+package ru.job4j.services.site;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -8,8 +8,6 @@ import ru.job4j.dtos.ResponseRegistrationDto;
 import ru.job4j.models.Site;
 import ru.job4j.repositories.SiteRepository;
 import ru.job4j.utils.SequenceGenerator;
-
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -23,17 +21,15 @@ public class SimpleSiteService implements SiteService {
         ResponseRegistrationDto responseRegistrationDto = new ResponseRegistrationDto();
         responseRegistrationDto.setLogin(login);
 
-        Optional<Site> siteOptional = siteRepository.findByLogin(login);
-        if (siteOptional.isPresent()) {
-            log.error(String.format("Site with domain: '%s' already exists", login));
-            return responseRegistrationDto;
-        }
-
         String password = generator.generateSequence();
-        responseRegistrationDto.setPassword(password);
-        responseRegistrationDto.setRegistration(true);
-
-        siteRepository.save(new Site(login, generator.getEncryptedPassword(password)));
+        try {
+            siteRepository.save(new Site(login, generator.getEncryptedPassword(password)));
+            responseRegistrationDto.setPassword(password);
+            responseRegistrationDto.setRegistration(true);
+            return responseRegistrationDto;
+        } catch (Exception e) {
+            log.error(String.format("Site with domain: '%s' already exists", login));
+        }
         return responseRegistrationDto;
     }
 }

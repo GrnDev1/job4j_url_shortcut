@@ -11,8 +11,8 @@ import ru.job4j.dtos.FullUrlDto;
 import ru.job4j.dtos.RequestRegistrationDto;
 import ru.job4j.dtos.ResponseRegistrationDto;
 import ru.job4j.dtos.UrlDto;
-import ru.job4j.services.SiteService;
-import ru.job4j.services.UrlService;
+import ru.job4j.services.site.SiteService;
+import ru.job4j.services.url.UrlService;
 
 import javax.validation.Valid;
 import java.security.Principal;
